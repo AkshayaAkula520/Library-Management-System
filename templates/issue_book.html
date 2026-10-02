@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Issue Book</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <nav>
+    <h2>📚 Library Management System</h2>
+
+    <div class="nav-links">
+        <a href="/">🏠 Dashboard</a>
+        <a href="/books">📚 Books</a>
+        <a href="/students">👨‍🎓 Students</a>
+        <a href="/issue-book">📖 Issue Book</a>
+        <a href="/borrowings">📋 Borrowings</a>
+    </div>
+</nav>
+
+    <div class="container">
+
+        <h1>Issue Book</h1>
+
+        <form method="POST" class="book-form">
+
+            <label>Select Student</label>
+
+            <select name="student_id" required>
+
+                <option value="">-- Select Student --</option>
+
+                {% for student in students %}
+
+                <option value="{{ student[0] }}">
+                    {{ student[1] }} - {{ student[2] }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label>Select Book</label>
+
+            <select name="book_id" required>
+
+                <option value="">-- Select Book --</option>
+
+                {% for book in books %}
+
+                <option value="{{ book[0] }}">
+                    {{ book[1] }} - Available: {{ book[6] }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <button type="submit">
+                📖 Issue Book
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="/" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+
+</html>

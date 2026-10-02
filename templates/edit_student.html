@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Student</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+   <nav>
+    <h2>📚 Library Management System</h2>
+
+    <div class="nav-links">
+        <a href="/">🏠 Dashboard</a>
+        <a href="/books">📚 Books</a>
+        <a href="/students">👨‍🎓 Students</a>
+        <a href="/issue-book">📖 Issue Book</a>
+        <a href="/borrowings">📋 Borrowings</a>
+    </div>
+</nav>
+
+    <div class="container">
+
+        <h1>✏️ Edit Student</h1>
+
+        <form method="POST" class="book-form">
+
+            <label>Student Name</label>
+
+            <input
+                type="text"
+                name="name"
+                value="{{ student[1] }}"
+                required
+            >
+
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                name="email"
+                value="{{ student[2] }}"
+                required
+            >
+
+
+            <label>Phone Number</label>
+
+            <input
+                type="text"
+                name="phone"
+                value="{{ student[3] or '' }}"
+            >
+
+
+            <button type="submit">
+                💾 Update Student
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="/students" class="back-link">
+            ← Back to Students
+        </a>
+
+    </div>
+
+</body>
+
+</html>

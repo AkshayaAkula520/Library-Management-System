@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Library Management System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+    <h2>📚 Library Management System</h2>
+
+    <div class="nav-links">
+        <a href="/">🏠 Dashboard</a>
+        <a href="/books">📚 Books</a>
+        <a href="/students">👨‍🎓 Students</a>
+        <a href="/issue-book">📖 Issue Book</a>
+        <a href="/borrowings">📋 Borrowings</a>
+    </div>
+</nav>
+    
+
+    <div class="container">
+
+        <h1>Library Dashboard</h1>
+
+        <p>Manage books, students and borrowing records easily.</p>
+
+
+        <!-- Dashboard Statistics -->
+
+        <div class="cards">
+
+           <div class="card">
+    <h3>👨‍🎓 Total Students</h3>
+    <p class="stat">{{ total_students }}</p>
+    <a href="/students">View Students</a>
+</div>
+
+<div class="card">
+    <h3>📖 Active Borrowings</h3>
+    <p class="stat">{{ active_borrowings }}</p>
+    <a href="/borrowings">View Borrowings</a>
+</div>
+
+
+
+
+            <div class="card">
+                <h3>📦 Total Copies</h3>
+                <p class="stat">{{ total_copies }}</p>
+                <a href="/books">View Books</a>
+            </div>
+
+
+            <div class="card">
+                <h3>✅ Available Copies</h3>
+                <p class="stat">{{ available_copies }}</p>
+                <a href="/books">View Books</a>
+            </div>
+
+        </div>
+
+
+        <!-- Navigation -->
+
+        <h2>Quick Actions</h2>
+
+        <div class="quick-actions">
+
+            <a href="/books" class="action-button">
+                📚 Manage Books
+            </a>
+
+            <a href="/add-book" class="action-button">
+                ➕ Add Book
+            </a>
+
+            <a href="/students" class="action-button">
+                👨‍🎓 Students
+            </a>
+
+            <a href="/add-student" class="action-button">
+                ➕ Add Student
+            </a>
+
+            <a href="/issue-book" class="action-button">
+                📖 Issue Book
+            </a>
+
+            <a href="/borrowings" class="action-button">
+                📋 Borrowing Records
+            </a>
+
+            <div class="recent-borrowings">
+    <h2>📋 Recent Borrowings</h2>
+
+    {% if recent_borrowings %}
+    <table>
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Student</th>
+                <th>Issue Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for borrowing in recent_borrowings %}
+            <tr>
+                <td>{{ borrowing[0] }}</td>
+                <td>{{ borrowing[1] }}</td>
+                <td>{{ borrowing[2] }}</td>
+                <td>{{ borrowing[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    <p>No borrowing records found.</p>
+    {% endif %}
+    <a href="/borrowings" class="action-button">
+    View All Borrowings →
+</a>
+</div>
+        </div>
+
+
+    </div>
+
+    <footer>
+    <p>© 2026 Library Management System | Built with Flask & MySQL</p>
+</footer>
+
+</body>
+
+</html>

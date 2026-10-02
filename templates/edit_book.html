@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Book</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+   <nav>
+    <h2>📚 Library Management System</h2>
+
+    <div class="nav-links">
+        <a href="/">🏠 Dashboard</a>
+        <a href="/books">📚 Books</a>
+        <a href="/students">👨‍🎓 Students</a>
+        <a href="/issue-book">📖 Issue Book</a>
+        <a href="/borrowings">📋 Borrowings</a>
+    </div>
+</nav>
+
+    <div class="container">
+
+        <h1>Edit Book</h1>
+
+        <form method="POST" class="book-form">
+
+            <label>Book Title</label>
+            <input type="text" name="title" value="{{ book[1] }}" required>
+
+            <label>Author</label>
+            <input type="text" name="author" value="{{ book[2] }}" required>
+
+            <label>Category</label>
+            <input type="text" name="category" value="{{ book[3] }}">
+
+            <label>ISBN</label>
+            <input type="text" name="isbn" value="{{ book[4] }}">
+
+            <label>Quantity</label>
+            <input type="number" name="quantity" min="1" value="{{ book[5] }}" required>
+
+            <button type="submit">Update Book</button>
+
+        </form>
+
+        <br>
+
+        <a href="/books" class="back-link">← Back to Books</a>
+
+    </div>
+
+</body>
+
+</html>

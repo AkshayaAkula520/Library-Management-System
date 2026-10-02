@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Students</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+    <h2>📚 Library Management System</h2>
+
+    <div class="nav-links">
+        <a href="/">🏠 Dashboard</a>
+        <a href="/books">📚 Books</a>
+        <a href="/students">👨‍🎓 Students</a>
+        <a href="/issue-book">📖 Issue Book</a>
+        <a href="/borrowings">📋 Borrowings</a>
+    </div>
+</nav>
+
+    <div class="container">
+
+        <h1>Students</h1>
+
+        <a href="/add-student" class="add-button">
+            ➕ Add Student
+        </a>
+
+        <br><br>
+
+        {% if students %}
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for student in students %}
+
+                <tr>
+                    <td>{{ student[0] }}</td>
+                    <td>{{ student[1] }}</td>
+                    <td>{{ student[2] }}</td>
+                    <td>{{ student[3] or '-' }}</td>
+                    <td>{{ student[4] }}</td>
+                    <td>
+    <a href="/edit-student/{{ student[0] }}" class="edit-button">
+        ✏️ Edit
+    </a>
+
+    <a href="/delete-student/{{ student[0] }}"
+       class="delete-button"
+       onclick="return confirm('Are you sure you want to delete this student?');">
+        🗑️ Delete
+    </a>
+</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <p class="no-books">
+            No students registered yet.
+        </p>
+
+        {% endif %}
+
+        <br>
+
+        <a href="/" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+
+</html>
